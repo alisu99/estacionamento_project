@@ -1,39 +1,29 @@
-{% load bootstrap4 %}
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'base.html' %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+{% block inicio %}
+<center>
     <title>Estacionamento | Início</title>
-    {% bootstrap_css %}
-</head>
-
-<body>
-    <div class="container">
-        <table class="table table-striped" style="text-align: center;">
-            <thead class="table-dark">
-                <tr>
-                    <th scope="col">Nome</th>
-                    <th scope="col">CPF</th>
-                    <th scope="col">Valor</th>
-                    <th scope="col">Dia de vencimento</th>
-                    <th scope="col">Data de início</th>
-                </tr>
-            </thead>
-            {% for mensalista in mensalistas %}
-            <tbody>
-                <tr>
-                    <th scope="row"><a href="{% url 'mensalista' mensalista.id %}">{{mensalista.nome}}</a></th>
-                    <td>{{mensalista.cpf}}</td>
-                    <td>{{mensalista.valor}}</td>
-                    <td>{{mensalista.dia_vencimento}}</td>
-                    <td>{{mensalista.data_inicial}}</td>
-                </tr>
+    <h5 style="margin-bottom: 20px; margin-top: 20px;">Tabela de mensalistas</h5>
+    <table class="table" style="text-align: center;">
+        <thead>
+            <tr>
+                <th scope="col">Nome</th>
+                <th scope="col">CPF</th>
+                <th scope="col">Valor</th>
+                <th scope="col">Dia de vencimento</th>
+                <th scope="col">Data de início</th>
+            </tr>
+        </thead>
+        {% for mensalista in mensalistas %}
+        <tbody>
+            <tr>
+                <th scope="row"><a href="{% url 'mensalista' mensalista.id %}">{{mensalista.nome}}</a></th>
+                <td>{{mensalista.cpf}}</td>
+                <td>{{mensalista.valor}}</td>
+                <td>{{mensalista.dia_vencimento}}</td>
+                <td>{{mensalista.data_inicial}}</td>
+            </tr>
             {% endfor %}
-        </table>
-    </div>
-    {% bootstrap_javascript jquery='full' %}
-</body>
-
-</html>
+    </table>
+</center>
+{% endblock %}

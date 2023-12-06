@@ -1,14 +1,5 @@
-{% load bootstrap4 %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mensalista | {{mensalista.nome}}</title>
-    {% bootstrap_css %}
-</head>
-<body>
-    
-    {% bootstrap_javascript jquery='full' %}
-</body>
-</html>
+{% extends 'base.html' %}
+
+{% block inicio %}
+<title>{{mensalista.nome}}</title>
+{% endblock %}

@@ -1,0 +1,75 @@
+{% load bootstrap4 %}
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% bootstrap_css %}
+</head>
+
+<style>
+    #div_container {
+        display: flex;
+        height: 120vh;
+        /* Definindo altura da tela (viewport height) */
+    }
+
+    #sidebar {
+        width: 250px;
+        background: #333;
+        color: white;
+        padding: 20px;
+        height: 100%;
+        /* Ocupando toda a altura da div_container */
+    }
+
+    #sidebar a {
+        text-decoration: none;
+        font-size: 18px;
+        color: #fff;
+        display: block;
+        padding: 10px;
+        border-bottom: 1px solid #555;
+        transition: background 0.3s;
+    }
+
+    #sidebar a:hover {
+        background: #555;
+    }
+
+    #content {
+        flex-grow: 1;
+        padding: 20px;
+    }
+
+    ::-webkit-scrollbar {
+        width: 8px;
+        /* Chrome, Safari, Edge */
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background-color: #555;
+        /* Chrome, Safari, Edge */
+    }
+</style>
+
+
+<body>
+    <div id="div_container">
+        <div id="sidebar">
+            <a href="{% url 'index' %}">Mensalistas</a>
+            <a href="{% url 'cadastrar_mensalista' %}">Cadastrar Mensalista</a>
+        </div>
+        <div id="content">
+            {% block inicio %}
+            {% endblock %}
+            {% block cadastro %}
+            {% endblock %}
+            {% bootstrap_messages %}
+        </div>
+    </div>
+    {% bootstrap_javascript jquery='full' %}
+</body>
+
+</html>
