@@ -12,3 +12,6 @@ class Mensalista(models.Model):
     endereco = models.CharField('Endereço', max_length=255, null=True)
     cidade = models.CharField('Cidade', max_length=255, null=True)
     uf = models.CharField('UF', max_length=2, null=True)
+
+    def __str__(self):
+        return self.nome
