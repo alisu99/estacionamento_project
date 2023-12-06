@@ -3,14 +3,15 @@ from . models import Mensalista
 from .forms import MensalistaModelForm
 from django.contrib import messages
 
-def login(request):
-    pass
-
 def index(request):
-    conteudo = {
-        "mensalistas": Mensalista.objects.all()
-        }
-    return render(request, "index.html", conteudo)
+    if str(request.user) == 'AnonymousUser':
+        return redirect('admin/') 
+    
+    else:
+        conteudo = {
+            "mensalistas": Mensalista.objects.all()
+            }
+        return render(request, "index.html", conteudo)
 
 
 def mensalista(request, pk):
