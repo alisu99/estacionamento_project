@@ -1,11 +1,21 @@
 {% extends 'base.html' %}
 
 {% block inicio %}
+<style>
+    tr:hover {
+        background: #55555563;
+        transition: background 0.3s;
+
+    }
+    a {
+        color: black;
+    }
+</style>
 <center>
     <title>Estacionamento | Início</title>
     <h5 style="margin-bottom: 20px; margin-top: 20px;">Tabela de mensalistas</h5>
     <table class="table" style="text-align: center;">
-        <thead>
+        <thead style="background-color: #555; color: white;">
             <tr>
                 <th scope="col">Nome</th>
                 <th scope="col">CPF</th>

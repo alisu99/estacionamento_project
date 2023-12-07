@@ -52,16 +52,29 @@
         background-color: #555;
         /* Chrome, Safari, Edge */
     }
+
+    #nav {
+        background-color: #333;
+        color: white;
+        height: 100px;
+        padding-bottom: 20px;
+
+    }
 </style>
 
 
 <body>
+    <nav id="nav" class="navbar">
+        <span class="navbar-brand mb-0 h1" style="margin-left: 18px;">ESTACIONAMENTO</span>
+    <p>USUÁRIO:  {{ user }}</p>
+    </nav>
     <div id="div_container">
         <div id="sidebar">
             <a href="{% url 'index' %}">Mensalistas</a>
             <a href="{% url 'cadastrar_mensalista' %}">Cadastrar Mensalista</a>
         </div>
         <div id="content">
+            <br><br>
             {% block inicio %}
             {% endblock %}
             {% block cadastro %}
