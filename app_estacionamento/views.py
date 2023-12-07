@@ -2,14 +2,17 @@ from django.shortcuts import render, get_object_or_404, redirect
 from . models import Mensalista
 from .forms import MensalistaModelForm
 from django.contrib import messages
+import json.decoder
+
 
 def index(request):
     if str(request.user) == 'AnonymousUser':
         return redirect('admin/') 
     
     else:
+        mensalistas = Mensalista.objects.order_by('nome')
         conteudo = {
-            "mensalistas": Mensalista.objects.all()
+            "mensalistas": mensalistas
             }
         return render(request, "index.html", conteudo)
 
@@ -41,3 +44,10 @@ def cadastrar_mensalista(request):
         "form": form
     }
     return render(request, "cadastro.html", context)
+
+def order_by_vencimento(request):
+    conteudo = {
+        "mensalistas": Mensalista.objects.order_by('dia_vencimento')
+    }
+    return render(request, "index.html", conteudo)
+

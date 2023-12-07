@@ -1,5 +1,65 @@
 {% extends 'base.html' %}
 
 {% block inicio %}
+<style>
+    body {
+        font-family: 'Arial', sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f5f5f5;
+    }
+
+    header {
+        background-color: #333;
+        color: #fff;
+        text-align: center;
+        padding: 1em;
+    }
+
+    main {
+        max-width: 800px;
+        margin: 20px auto;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+        color: #333;
+        border-bottom: 2px solid #ddd;
+        padding-bottom: 5px;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    h5 {
+        color: #555;
+        margin-bottom: 8px;
+    }
+
+    p {
+        margin-bottom: 20px;
+    }
+</style>
 <title>{{mensalista.nome}}</title>
+<header>
+    <h1>Dados do Mensalista</h1>
+</header>
+
+<main>
+    <h5>Nome: {{mensalista.nome|capfirst}}</h5>
+    <p>CPF: {{mensalista.cpf}}</p>
+    <p>Valor: {{mensalista.valor}}</p>
+    <p>Data de Início: {{mensalista.data_inicial}}</p>
+    <p>Dia de Vencimento: {{mensalista.dia_vencimento}}</p>
+    <p>CEP: {{mensalista.cep}}</p>
+    <p>Endereço: {{mensalista.endereco|capfirst}}</p>
+    <p>Bairro: {{mensalista.bairro|capfirst}}</p>
+    <p>Cidade: {{mensalista.cidade|capfirst}}</p>
+    <p>UF: {{mensalista.uf|upper}}</p>
+    <p>Observações: {{mensalista.obs|capfirst}}</p>
+</main>
+
+
 {% endblock %}
