@@ -68,7 +68,7 @@
         <tbody>
             {% for mensalista in mensalistas %}
             <tr>
-                <td><a href="{% url 'mensalista' mensalista.id %}">{{ mensalista.nome|title }}</a></td>
+                <td><a href="{% url 'mensalista' mensalista.id %}" style="color: black;"><strong>{{ mensalista.nome|title }}</strong></a></td>
                 <td>{{ mensalista.cpf }}</td>
                 <td>{{ mensalista.valor }}</td>
                 <td>{{ mensalista.dia_vencimento }}</td>

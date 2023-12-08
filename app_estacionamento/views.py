@@ -50,4 +50,3 @@ def order_by_vencimento(request):
         "mensalistas": Mensalista.objects.order_by('dia_vencimento')
     }
     return render(request, "index.html", conteudo)
-
