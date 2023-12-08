@@ -2,8 +2,6 @@ from django.shortcuts import render, get_object_or_404, redirect
 from . models import Mensalista
 from .forms import MensalistaModelForm
 from django.contrib import messages
-import json.decoder
-
 
 def index(request):
     if str(request.user) == 'AnonymousUser':
@@ -50,3 +48,8 @@ def order_by_vencimento(request):
         "mensalistas": Mensalista.objects.order_by('dia_vencimento')
     }
     return render(request, "index.html", conteudo)
+
+def excluir(request, pk):
+    mensalista = Mensalista.objects.filter(pk=pk)
+    mensalista.delete()
+    return redirect('index')
