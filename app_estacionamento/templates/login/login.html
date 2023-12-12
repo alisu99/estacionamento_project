@@ -1,0 +1,48 @@
+{% load bootstrap4 %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    {% bootstrap_css %}
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .login-form {
+            width: 300px;
+        }
+    </style>
+</head>
+
+<body>
+    <form action="{% url 'login' %}" method="post" class="login-form">
+        {% csrf_token %}
+        <div class="text-center">
+            <label for="id_usuario">Usuário</label>
+            <input class="form-control" type="text" name="usuario" id="id_usuario" required autocomplete="off">
+        </div>
+        <div class="text-center">
+            <label for="id_senha">Senha</label>
+            <input class="form-control" type="password" name="senha" id="id_senha" required autocomplete="off">
+        </div>
+        <br>
+        <button class="btn btn-success btn-block">Entrar</button>
+        <br>
+        <div>
+            {% bootstrap_messages %}
+        </div>
+    </form>
+
+    {% bootstrap_javascript jquery='full' %}
+</body>
+
+</html>
