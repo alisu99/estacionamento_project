@@ -26,7 +26,7 @@
     }
 
     h5 {
-        color: #333;
+        color: white;
         text-align: center;
         margin-bottom: 20px;
         margin-top: 20px;
@@ -62,44 +62,48 @@
         cursor: pointer;
     }
 
-    .btn-primary {
+    /* .btn-primary {
         background-color: #333;
         color: #fff;
-    }
+    } */
 
     .btn-danger {
         background-color: #d9534f;
         color: #fff;
     }
 </style>
-<title>Cadastrar novo mensalista</title>
+<title>Atualizar mensalista</title>
 <header>
-    <h3>Novo mensalista</h3>
+    <h3>Atualizar mensalista</h3>
+    <h5><strong>Nome:</strong> {{mensalista.nome|title}}</h5>
+    <p><strong>CPF:</strong> {{mensalista.cpf}}</p>
 </header>
 <br><br>
-<form action="{% url 'cadastrar_mensalista' %}" method="post" class="form" autocomplete="off"
+
+<form action="{% url 'atualizar' mensalista.id %}" method="post" class="form" autocomplete="off"
     style="margin-left: 50px;">
     {% csrf_token %}
-
     <div class="row">
-        <div class="col-md-3">
+        <!-- <div class="col-md-3">
             <div class="form-group">
                 <label for="id_nome">Nome *</label>
-                <input class="form-control" type="text" name="nome" id="id_nome" maxlength="255" required
-                    placeholder="Nome e sobrenome">
+                <input class="form-control" type="text" name="nome" id="id_nome" maxlength="255" required 
+                placeholder="Nome e sobrenome" value="{{ mensalista.nome|title }}" >
             </div>
         </div>
         <div class="col-md-2">
             <div class="form-group">
                 <label for="id_cpf">CPF *</label>
                 <input class="form-control" type="text" name="cpf" id="id_cpf" maxlength="14" required
-                    placeholder="Digite o CPF">
+                placeholder="Digite o CPF" value="{{ mensalista.cpf }}" >
             </div>
-        </div>
+        </div> -->
+    </div>
+
+    <div class="row">
         <div class="col-md-1">
             <div class="form-group">
                 <label for="id_valor">Valor *</label>
-                <!-- <input class="form-control" type="number" name="valor" id="id_valor" step="0.01" required> -->
                 <select class="form-control" id="id_valor" name="valor" style="width: 100px;">
                     <option value="65">65</option>
                     <option value="125">125</option>
@@ -107,9 +111,6 @@
                 </select>
             </div>
         </div>
-    </div>
-
-    <div class="row">
         <div class="col-md-2">
             <div class="form-group">
                 <label for="id_data_inicial">Data de início *</label>
@@ -120,8 +121,7 @@
         <div class="col-md-1">
             <div class="form-group">
                 <label for="id_dia_vencimento">Venc. *</label>
-                <!-- <input class="form-control" type="text" name="dia_vencimento" id="id_dia_vencimento" maxlength="2" required> -->
-                <select class="form-control" id="id_dia_vencimento" name="dia_vencimento" style="width: 70px;">
+                <select class="form-control" id="id_dia_vencimento" name="dia_vencimento" style="width: 70px;" >
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
@@ -159,13 +159,8 @@
         <div class="col-md-2">
             <div class="form-group">
                 <label for="id_cep">CEP (opcional)</label>
-                <input class="form-control" type="text" name="cep" id="id_cep" maxlength="8" style="width: 100px;">
-            </div>
-        </div>
-        <div class="col-md-2">
-            <div class="form-group">
-                <label for="id_cidade">Cidade *</label>
-                <input class="form-control" type="text" name="cidade" id="id_cidade" maxlength="110" required>
+                <input class="form-control" type="text" name="cep" id="id_cep" maxlength="8" style="width: 100px;"
+                    value="{{ mensalista.cep }}">
             </div>
         </div>
     </div>
@@ -174,20 +169,29 @@
         <div class="col-md-3">
             <div class="form-group">
                 <label for="id_endereco">Endereço *</label>
-                <input class="form-control" type="text" name="endereco" id="id_endereco" maxlength="255" required>
+                <input class="form-control" type="text" name="endereco" id="id_endereco" maxlength="255" required
+                    value="{{ mensalista.endereco|title }}">
             </div>
         </div>
         <div class="col-md-2">
             <div class="form-group">
                 <label for="id_bairro">Bairro *</label>
-                <input class="form-control" type="text" name="bairro" id="id_bairro" maxlength="255" required>
+                <input class="form-control" type="text" name="bairro" id="id_bairro" maxlength="255" required
+                    value="{{ mensalista.bairro|title }}">
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="form-group">
+                <label for="id_cidade">Cidade *</label>
+                <input class="form-control" type="text" name="cidade" id="id_cidade" maxlength="110" required
+                    value="{{ mensalista.cidade|title }}">
             </div>
         </div>
         <div class="col-md-1">
             <div class="form-group">
                 <label for="id_uf">UF *</label>
                 <input class="form-control" type="text" name="uf" id="id_uf" maxlength="2" required
-                    style="text-transform: uppercase;">
+                    style="text-transform: uppercase;" value="{{ mensalista.uf }}">
             </div>
         </div>
 
@@ -196,14 +200,14 @@
         <div class="form-group">
             <label for="id_obs">Observações (opcional)</label>
             <textarea class="form-control" name="obs" id="id_obs" cols="10" rows="10" style="width: 700px;"
-                placeholder="Digite alguma observação, se necessário"></textarea>
+                placeholder="Digite alguma observação, se necessário">{{ mensalista.obs }}</textarea>
         </div>
     </div>
 
     <div class="form-group">
         <br>
-        <button type="submit" class="btn btn-primary">Cadastrar</button>
-        <a href="{% url 'index' %}" class="btn btn-danger">Cancelar</a>
+        <button type="submit" class="btn btn-success">Atualizar</button>
+        <a href="javascript:history.go(-1)" class="btn btn-danger">Cancelar</a>
     </div>
 </form>
 

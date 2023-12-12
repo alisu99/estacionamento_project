@@ -10,5 +10,7 @@ urlpatterns = [
     path('mensalista/<int:pk>', views.mensalista, name='mensalista'),
     path('cadastrar_mensalista', views.cadastrar_mensalista, name='cadastrar_mensalista'),
     path('order_by_vencimento', views.order_by_vencimento, name='order_by_vencimento'),
-    path('excluir/<int:pk>', views.excluir, name='excluir')
+    path('excluir/<int:pk>', views.excluir, name='excluir'),
+    path('atualizar_mensalista/<int:pk>', views.atualizar_mensalista, name='atualizar_mensalista'),
+    path('atualizar/<int:pk>', views.atualizar, name='atualizar')
     ]

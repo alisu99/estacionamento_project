@@ -2,62 +2,66 @@
 
 {% block inicio %}
 <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f5f5f5;
-        }
+    body {
+        font-family: 'Arial', sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f5f5f5;
+    }
 
-        header {
-            background-color: #333;
-            color: #fff;
-            text-align: center;
-            padding: 1em;
-        }
+    header {
+        background-color: #333;
+        color: #fff;
+        text-align: center;
+        padding: 1em;
+    }
 
-        main {
-            max-width: 800px;
-            margin: 20px auto;
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
+    main {
+        max-width: 800px;
+        margin: 20px auto;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
 
-        h5 {
-            color: #333;
-            margin-bottom: 20px;
-        }
+    h5 {
+        color: #333;
+        margin-bottom: 20px;
+    }
 
-        table {
-            width: 100%;
-            text-align: center;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
+    table {
+        width: 100%;
+        text-align: center;
+        border-collapse: collapse;
+        margin-top: 20px;
+    }
 
-        th, td {
-            border: 1px solid #ddd;
-            padding: 10px;
-        }
+    th,
+    td {
+        border: 1px solid #ddd;
+        padding: 10px;
+    }
 
-        th {
-            background-color: #555;
-            color: white;
-        }
+    th {
+        background-color: #555;
+        color: white;
+    }
 
-        tr:hover {
-            background-color: #f5f5f5;
-        }
+    tr:hover {
+        background-color: #f5f5f5;
+    }
 </style>
 <center>
     <title>Estacionamento | Início</title>
-    <h5>Tabela de Mensalistas</h5>
+    <header>
+        <h3>Tabela de Mensalistas</h3>
+    </header>
 
     <table>
         <thead>
             <tr>
+                <th scope="col" style="width: 55px;">ID</th>
                 <th scope="col"><a href="{% url 'index' %}" style="color: white;">Nome</a></th>
                 <th scope="col">CPF</th>
                 <th scope="col">Valor</th>
@@ -68,6 +72,7 @@
         <tbody>
             {% for mensalista in mensalistas %}
             <tr>
+                <td>{{ mensalista.id }}</td>
                 <td><a href="{% url 'mensalista' mensalista.id %}" style="color: black;"><strong>{{ mensalista.nome|title }}</strong></a></td>
                 <td>{{ mensalista.cpf }}</td>
                 <td>{{ mensalista.valor }}</td>
