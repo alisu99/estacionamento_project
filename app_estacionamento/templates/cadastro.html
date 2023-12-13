@@ -74,7 +74,7 @@
     <h3>Novo mensalista</h3>
 </header>
 <div class="form-container">
-    <form action="{% url 'cadastrar_mensalista' %}" method="post" class="form" autocomplete="off">
+    <form action="{% url 'cadastrar_mensalista' %}" method="post" class="form">
         {% csrf_token %}
 
         <div class="row">
@@ -82,7 +82,7 @@
                 <div class="form-group">
                     <label for="id_nome">Nome*</label>
                     <input class="form-control" type="text" name="nome" id="id_nome" maxlength="255" required
-                        placeholder="Nome e sobrenome">
+                        placeholder="Nome e sobrenome" autocomplete="off">
                 </div>
             </div>
             <div class="col-md-3">
@@ -153,7 +153,7 @@
             <div class="col-md-3">
                 <div class="form-group">
                     <label for="id_cep">CEP (opcional)</label>
-                    <input class="form-control" type="text" name="cep" id="id_cep" maxlength="8" style="width: 100px;">
+                    <input class="form-control" type="text" name="cep" id="id_cep" maxlength="8" style="width: 100px;" autocomplete="off">
                 </div>
             </div>
         </div>
@@ -162,26 +162,26 @@
             <div class="col-md-4">
                 <div class="form-group">
                     <label for="id_endereco">Endereço*</label>
-                    <input class="form-control" type="text" name="endereco" id="id_endereco" maxlength="255" required>
+                    <input class="form-control" type="text" name="endereco" id="id_endereco" maxlength="255" required autocomplete="off">
                 </div>
             </div>
             <div class="col-md-3">
                 <div class="form-group">
                     <label for="id_bairro">Bairro*</label>
-                    <input class="form-control" type="text" name="bairro" id="id_bairro" maxlength="255" required>
+                    <input class="form-control" type="text" name="bairro" id="id_bairro" maxlength="255" required autocomplete="off">
                 </div>
             </div>
             <div class="col-md-3">
                 <div class="form-group">
                     <label for="id_cidade">Cidade*</label>
-                    <input class="form-control" type="text" name="cidade" id="id_cidade" maxlength="110" required>
+                    <input class="form-control" type="text" name="cidade" id="id_cidade" maxlength="110" required autocomplete="off">
                 </div>
             </div>
             <div class="col-md-1">
                 <div class="form-group">
                     <label for="id_uf">UF*</label>
                     <input class="form-control" type="text" name="uf" id="id_uf" maxlength="2" required
-                        style="text-transform: uppercase; width: 70px;">
+                        style="text-transform: uppercase; width: 70px;" autocomplete="off">
                 </div>
             </div>
 
@@ -201,5 +201,5 @@
         </div>
     </form>
 </div>
-<br>
+<br><br><br>
 {% endblock %}

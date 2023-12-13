@@ -14,21 +14,22 @@
         margin: 0;
         padding: 0;
         background-color: #f5f5f5;
+        height: 100vh;
+        /* Defina a altura do corpo como 100% da viewport height */
     }
 
     #div_container {
-        display: flex;
-        height: 120vh;
-        /* Definindo altura da tela (viewport height) */
+        display: grid;
+        grid-template-columns: 250px 1fr;
+        /* A barra lateral terá 250px de largura, o conteúdo ocupará o restante */
+        height: 100%;
+        /* Garante que a altura do container seja 100% da altura do corpo */
     }
 
     #sidebar {
-        width: 250px;
         background: #333;
         color: white;
         padding: 20px;
-        height: 100%;
-        /* Ocupando toda a altura da div_container */
     }
 
     #sidebar a {
@@ -46,18 +47,15 @@
     }
 
     #content {
-        flex-grow: 1;
-        padding: 20px;
+        padding: 5px;
     }
 
     ::-webkit-scrollbar {
         width: 8px;
-        /* Chrome, Safari, Edge */
     }
 
     ::-webkit-scrollbar-thumb {
         background-color: #555;
-        /* Chrome, Safari, Edge */
     }
 
     #nav {
@@ -65,23 +63,23 @@
         color: white;
         height: 60px;
         padding-bottom: 10px;
-
     }
 </style>
 
 
 <body>
     <nav id="nav" class="navbar">
-        <span class="navbar-brand mb-0 h1" style="margin-left: 18px;">ESTACIONAMENTO</span>
+        <span class="navbar-brand mb-0 h1" style="margin-left: 18px;">UP ESTACIONAMENTO</span>
         <span class="navbar-brand mb-0 h1" style="margin-left: 18px;">Usuário: {{ request.user }}</span>
-
     </nav>
     <div id="div_container">
         <div id="sidebar">
             <a href="{% url 'index' %}">Listar mensalistas</a>
             <a href="{% url 'cadastrar_mensalista' %}">Cadastrar mensalista</a>
             <a href="{% url 'usuario' %}">Perfil do usuário</a>
-            <a href="#" style="color: red;">Sair do sistema</a>
+            <a href="{% url 'logout' %}" style="color: red;"
+                onclick="return confirm('Deseja sair?')">Sair
+                do sistema</a>
         </div>
         <div id="content">
             {% bootstrap_messages %}
@@ -91,6 +89,7 @@
             {% endblock %}
         </div>
     </div>
+    
     {% bootstrap_javascript jquery='full' %}
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>

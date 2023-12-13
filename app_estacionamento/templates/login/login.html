@@ -15,33 +15,42 @@
             justify-content: center;
             height: 100vh;
             margin: 0;
+            background-color: darkslategrey;
         }
 
-        .login-form {
+        .login-box {
             width: 300px;
+            padding: 20px;
+            border-radius: 5px;
+            background-color: white;
+        }
+        .form-control {
+            border-color: black;
         }
     </style>
 </head>
 
 <body>
-    <form action="{% url 'login' %}" method="post" class="login-form">
-        {% csrf_token %}
-        <div class="text-center">
-            <label for="id_usuario">Usuário</label>
-            <input class="form-control" type="text" name="usuario" id="id_usuario" required autocomplete="off">
-        </div>
-        <div class="text-center">
-            <label for="id_senha">Senha</label>
-            <input class="form-control" type="password" name="senha" id="id_senha" required autocomplete="off">
-        </div>
-        <br>
-        <button class="btn btn-success btn-block">Entrar</button>
-        <br>
-        <div>
-            {% bootstrap_messages %}
-        </div>
-    </form>
-
+    <div class="login-box">
+        <h4>UP ESTACIONAMENTO</h4>
+        <hr>
+        <form action="{% url 'login' %}" method="post" class="login-form">
+            {% csrf_token %}
+            <label for="id_usuario">Usuário*</label>
+            <input class="form-control" type="text" name="usuario" id="id_usuario" placeholder="Nome de usuário" required autocomplete="off">
+            <br>
+            <label for="id_senha">Senha*</label>
+            <input class="form-control" type="password" name="senha" id="id_senha" required autocomplete="off" placeholder="Digita sua senha">
+            <br>
+            <button class="btn btn-success btn-block">Entrar</button>
+            <br>
+            <div>
+                {% bootstrap_messages %}
+            </div>
+        </form>
+        <p style="text-align: center; font-size: small;">Desenvolvido por <a href="https://www.instagram.com/alencar.st/">alencar.st</a></p>
+        <p style="text-align: center; font-size: small;">Para cadastrar entre em <a href="mailto:alissonsts910@gmail.com">contato</a>.</p>
+    </div>
     {% bootstrap_javascript jquery='full' %}
 </body>
 

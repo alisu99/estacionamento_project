@@ -4,8 +4,9 @@ from .forms import MensalistaModelForm
 from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
-from django.contrib.auth import login as login_django
+from django.contrib.auth import login as login_django, logout as logout_django
 from django.contrib.auth.decorators import login_required
+from django.urls import reverse
 
 
 @login_required(login_url="login/")
@@ -96,6 +97,13 @@ def login(request):
         else:
             messages.error(request, "Usuário não encontrado! Tente novamente")
             return redirect("login")
+        
 
+@login_required(login_url='login/')
 def usuario(request):
     return render(request, 'usuario.html')
+
+
+def logout(request):
+    logout_django(request)
+    return redirect(reverse('login'))
