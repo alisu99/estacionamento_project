@@ -2,13 +2,6 @@
 
 {% block cadastro %}
 <style>
-    body {
-        font-family: 'Arial', sans-serif;
-        margin: 0;
-        padding: 0;
-        background-color: #f5f5f5;
-    }
-
     header {
         background-color: #333;
         color: #fff;
@@ -32,8 +25,12 @@
         margin-top: 20px;
     }
 
-    form {
-        margin-left: 50px;
+    .form {
+        max-width: 800px;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     }
 
     .row {
@@ -48,10 +45,6 @@
         margin-right: 10px;
     }
 
-    .form-group {
-        margin-bottom: 15px;
-    }
-
     label {
         color: #333;
     }
@@ -62,150 +55,151 @@
         cursor: pointer;
     }
 
-    .btn-primary {
-        background-color: #333;
-        color: #fff;
-    }
-
     .btn-danger {
         background-color: #d9534f;
         color: #fff;
     }
+
+    .form-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 40px;
+        /* Adjust as needed to control vertical centering */
+    }
+
 </style>
 <title>Cadastrar novo mensalista</title>
 <header>
     <h3>Novo mensalista</h3>
 </header>
-<br><br>
-<form action="{% url 'cadastrar_mensalista' %}" method="post" class="form" autocomplete="off"
-    style="margin-left: 50px;">
-    {% csrf_token %}
+<div class="form-container">
+    <form action="{% url 'cadastrar_mensalista' %}" method="post" class="form" autocomplete="off">
+        {% csrf_token %}
 
-    <div class="row">
-        <div class="col-md-3">
-            <div class="form-group">
-                <label for="id_nome">Nome *</label>
-                <input class="form-control" type="text" name="nome" id="id_nome" maxlength="255" required
-                    placeholder="Nome e sobrenome">
+        <div class="row">
+            <div class="col-md-5">
+                <div class="form-group">
+                    <label for="id_nome">Nome*</label>
+                    <input class="form-control" type="text" name="nome" id="id_nome" maxlength="255" required
+                        placeholder="Nome e sobrenome">
+                </div>
             </div>
-        </div>
-        <div class="col-md-2">
-            <div class="form-group">
-                <label for="id_cpf">CPF *</label>
-                <input class="form-control" type="text" name="cpf" id="id_cpf" maxlength="14" required
-                    placeholder="Digite o CPF">
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label for="id_cpf">CPF*</label>
+                    <input class="form-control" type="text" name="cpf" id="id_cpf" maxlength="14" required
+                        placeholder="Digite o CPF">
+                </div>
             </div>
-        </div>
-        <div class="col-md-1">
-            <div class="form-group">
-                <label for="id_valor">Valor *</label>
-                <!-- <input class="form-control" type="number" name="valor" id="id_valor" step="0.01" required> -->
-                <select class="form-control" id="id_valor" name="valor" style="width: 100px;">
-                    <option value="65">65</option>
-                    <option value="125">125</option>
-                    <option value="250">250</option>
-                </select>
-            </div>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-md-2">
-            <div class="form-group">
-                <label for="id_data_inicial">Data de início *</label>
-                <input class="form-control" type="date" name="data_inicial" id="id_data_inicial" required>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label for="id_data_inicial">Data de início*</label>
+                    <input class="form-control" type="date" name="data_inicial" id="id_data_inicial" required>
+                </div>
             </div>
         </div>
 
-        <div class="col-md-1">
-            <div class="form-group">
-                <label for="id_dia_vencimento">Venc. *</label>
-                <!-- <input class="form-control" type="text" name="dia_vencimento" id="id_dia_vencimento" maxlength="2" required> -->
-                <select class="form-control" id="id_dia_vencimento" name="dia_vencimento" style="width: 70px;">
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="6">6</option>
-                    <option value="7">7</option>
-                    <option value="8">8</option>
-                    <option value="9">9</option>
-                    <option value="10">10</option>
-                    <option value="11">11</option>
-                    <option value="12">12</option>
-                    <option value="13">13</option>
-                    <option value="14">14</option>
-                    <option value="15">15</option>
-                    <option value="16">16</option>
-                    <option value="17">17</option>
-                    <option value="18">18</option>
-                    <option value="19">19</option>
-                    <option value="20">20</option>
-                    <option value="21">21</option>
-                    <option value="22">22</option>
-                    <option value="23">23</option>
-                    <option value="24">24</option>
-                    <option value="25">25</option>
-                    <option value="26">26</option>
-                    <option value="27">27</option>
-                    <option value="28">28</option>
-                    <option value="29">29</option>
-                    <option value="30">30</option>
-                    <option value="31">31</option>
-                </select>
+        <div class="row">
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label for="id_valor">Valor*</label>
+                    <select class="form-control" id="id_valor" name="valor">
+                        <option value="65">65</option>
+                        <option value="125">125</option>
+                        <option value="250">250</option>
+                    </select>
+                </div>
             </div>
-        </div>
-        <div class="col-md-2">
-            <div class="form-group">
-                <label for="id_cep">CEP (opcional)</label>
-                <input class="form-control" type="text" name="cep" id="id_cep" maxlength="8" style="width: 100px;">
-            </div>
-        </div>
-        <div class="col-md-2">
-            <div class="form-group">
-                <label for="id_cidade">Cidade *</label>
-                <input class="form-control" type="text" name="cidade" id="id_cidade" maxlength="110" required>
-            </div>
-        </div>
-    </div>
 
-    <div class="row">
-        <div class="col-md-3">
-            <div class="form-group">
-                <label for="id_endereco">Endereço *</label>
-                <input class="form-control" type="text" name="endereco" id="id_endereco" maxlength="255" required>
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label for="id_dia_vencimento">Venc.*</label>
+                    <select class="form-control" id="id_dia_vencimento" name="dia_vencimento" style="width: 90px;">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                        <option value="13">13</option>
+                        <option value="14">14</option>
+                        <option value="15">15</option>
+                        <option value="16">16</option>
+                        <option value="17">17</option>
+                        <option value="18">18</option>
+                        <option value="19">19</option>
+                        <option value="20">20</option>
+                        <option value="21">21</option>
+                        <option value="22">22</option>
+                        <option value="23">23</option>
+                        <option value="24">24</option>
+                        <option value="25">25</option>
+                        <option value="26">26</option>
+                        <option value="27">27</option>
+                        <option value="28">28</option>
+                        <option value="29">29</option>
+                        <option value="30">30</option>
+                        <option value="31">31</option>
+                    </select>
+                </div>
             </div>
-        </div>
-        <div class="col-md-2">
-            <div class="form-group">
-                <label for="id_bairro">Bairro *</label>
-                <input class="form-control" type="text" name="bairro" id="id_bairro" maxlength="255" required>
-            </div>
-        </div>
-        <div class="col-md-1">
-            <div class="form-group">
-                <label for="id_uf">UF *</label>
-                <input class="form-control" type="text" name="uf" id="id_uf" maxlength="2" required
-                    style="text-transform: uppercase;">
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label for="id_cep">CEP (opcional)</label>
+                    <input class="form-control" type="text" name="cep" id="id_cep" maxlength="8" style="width: 100px;">
+                </div>
             </div>
         </div>
 
-    </div>
-    <div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="id_endereco">Endereço*</label>
+                    <input class="form-control" type="text" name="endereco" id="id_endereco" maxlength="255" required>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label for="id_bairro">Bairro*</label>
+                    <input class="form-control" type="text" name="bairro" id="id_bairro" maxlength="255" required>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label for="id_cidade">Cidade*</label>
+                    <input class="form-control" type="text" name="cidade" id="id_cidade" maxlength="110" required>
+                </div>
+            </div>
+            <div class="col-md-1">
+                <div class="form-group">
+                    <label for="id_uf">UF*</label>
+                    <input class="form-control" type="text" name="uf" id="id_uf" maxlength="2" required
+                        style="text-transform: uppercase; width: 70px;">
+                </div>
+            </div>
+
+        </div>
+        <div>
+            <div class="form-group">
+                <label for="id_obs">Observações (opcional)</label>
+                <textarea class="form-control" name="obs" id="id_obs" cols="10" rows="10"
+                    placeholder="Digite alguma observação, se necessário."></textarea>
+            </div>
+        </div>
+
         <div class="form-group">
-            <label for="id_obs">Observações (opcional)</label>
-            <textarea class="form-control" name="obs" id="id_obs" cols="10" rows="10" style="width: 700px;"
-                placeholder="Digite alguma observação, se necessário"></textarea>
+            <br>
+            <button type="submit" class="btn btn-success">Cadastrar</button>
+            <a href="{% url 'index' %}" class="btn btn-danger">Cancelar</a>
         </div>
-    </div>
-
-    <div class="form-group">
-        <br>
-        <button type="submit" class="btn btn-primary">Cadastrar</button>
-        <a href="{% url 'index' %}" class="btn btn-danger">Cancelar</a>
-    </div>
-</form>
-
+    </form>
+</div>
 <br>
 {% endblock %}

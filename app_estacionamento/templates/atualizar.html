@@ -1,14 +1,7 @@
 {% extends 'base.html' %}
 
-{% block cadastro %}
+{% block inicio %}
 <style>
-    body {
-        font-family: 'Arial', sans-serif;
-        margin: 0;
-        padding: 0;
-        background-color: #f5f5f5;
-    }
-
     header {
         background-color: #333;
         color: #fff;
@@ -32,8 +25,12 @@
         margin-top: 20px;
     }
 
-    form {
-        margin-left: 50px;
+    .form {
+        max-width: 800px;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     }
 
     .row {
@@ -48,9 +45,9 @@
         margin-right: 10px;
     }
 
-    .form-group {
+    /* .form-group {
         margin-bottom: 15px;
-    }
+    } */
 
     label {
         color: #333;
@@ -62,15 +59,18 @@
         cursor: pointer;
     }
 
-    /* .btn-primary {
-        background-color: #333;
-        color: #fff;
-    } */
-
     .btn-danger {
         background-color: #d9534f;
         color: #fff;
     }
+
+    .form-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        /* Adjust as needed to control vertical centering */
+    }
+
 </style>
 <title>Atualizar mensalista</title>
 <header>
@@ -79,29 +79,12 @@
     <p><strong>CPF:</strong> {{mensalista.cpf}}</p>
 </header>
 <br><br>
-
+<div class="form-container">
 <form action="{% url 'atualizar_mensalista' mensalista.id %}" method="post" class="form" autocomplete="off"
     style="margin-left: 50px;">
     {% csrf_token %}
     <div class="row">
-        <!-- <div class="col-md-3">
-            <div class="form-group">
-                <label for="id_nome">Nome *</label>
-                <input class="form-control" type="text" name="nome" id="id_nome" maxlength="255" required 
-                placeholder="Nome e sobrenome" value="{{ mensalista.nome|title }}" >
-            </div>
-        </div>
         <div class="col-md-2">
-            <div class="form-group">
-                <label for="id_cpf">CPF *</label>
-                <input class="form-control" type="text" name="cpf" id="id_cpf" maxlength="14" required
-                placeholder="Digite o CPF" value="{{ mensalista.cpf }}" >
-            </div>
-        </div> -->
-    </div>
-
-    <div class="row">
-        <div class="col-md-1">
             <div class="form-group">
                 <label for="id_valor">Valor *</label>
                 <select class="form-control" id="id_valor" name="valor" style="width: 100px;">
@@ -111,14 +94,14 @@
                 </select>
             </div>
         </div>
-        <div class="col-md-2">
+        <div class="col-md-3">
             <div class="form-group">
                 <label for="id_data_inicial">Data de início *</label>
                 <input class="form-control" type="date" name="data_inicial" id="id_data_inicial" required>
             </div>
         </div>
 
-        <div class="col-md-1">
+        <div class="col-md-2">
             <div class="form-group">
                 <label for="id_dia_vencimento">Venc. *</label>
                 <select class="form-control" id="id_dia_vencimento" name="dia_vencimento" style="width: 70px;" >
@@ -156,7 +139,7 @@
                 </select>
             </div>
         </div>
-        <div class="col-md-2">
+        <div class="col-md-3">
             <div class="form-group">
                 <label for="id_cep">CEP (opcional)</label>
                 <input class="form-control" type="text" name="cep" id="id_cep" maxlength="8" style="width: 100px;"
@@ -166,28 +149,28 @@
     </div>
 
     <div class="row">
-        <div class="col-md-3">
+        <div class="col-md-4">
             <div class="form-group">
                 <label for="id_endereco">Endereço *</label>
                 <input class="form-control" type="text" name="endereco" id="id_endereco" maxlength="255" required
                     value="{{ mensalista.endereco|title }}">
             </div>
         </div>
-        <div class="col-md-2">
+        <div class="col-md-3">
             <div class="form-group">
                 <label for="id_bairro">Bairro *</label>
                 <input class="form-control" type="text" name="bairro" id="id_bairro" maxlength="255" required
                     value="{{ mensalista.bairro|title }}">
             </div>
         </div>
-        <div class="col-md-2">
+        <div class="col-md-3">
             <div class="form-group">
                 <label for="id_cidade">Cidade *</label>
                 <input class="form-control" type="text" name="cidade" id="id_cidade" maxlength="110" required
                     value="{{ mensalista.cidade|title }}">
             </div>
         </div>
-        <div class="col-md-1">
+        <div class="col-md-2">
             <div class="form-group">
                 <label for="id_uf">UF *</label>
                 <input class="form-control" type="text" name="uf" id="id_uf" maxlength="2" required
@@ -199,7 +182,7 @@
     <div>
         <div class="form-group">
             <label for="id_obs">Observações (opcional)</label>
-            <textarea class="form-control" name="obs" id="id_obs" cols="10" rows="10" style="width: 700px;"
+            <textarea class="form-control" name="obs" id="id_obs" cols="10" rows="10"
                 placeholder="Digite alguma observação, se necessário">{{ mensalista.obs }}</textarea>
         </div>
     </div>
@@ -210,6 +193,5 @@
         <a href="javascript:history.go(-1)" class="btn btn-danger">Cancelar</a>
     </div>
 </form>
-
-<br>
+</div>
 {% endblock %}

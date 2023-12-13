@@ -96,3 +96,6 @@ def login(request):
         else:
             messages.error(request, "Usuário não encontrado! Tente novamente")
             return redirect("login")
+
+def usuario(request):
+    return render(request, 'usuario.html')

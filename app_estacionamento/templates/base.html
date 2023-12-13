@@ -9,6 +9,13 @@
 </head>
 
 <style>
+    body {
+        font-family: 'Arial', sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f5f5f5;
+    }
+
     #div_container {
         display: flex;
         height: 120vh;
@@ -66,12 +73,15 @@
 <body>
     <nav id="nav" class="navbar">
         <span class="navbar-brand mb-0 h1" style="margin-left: 18px;">ESTACIONAMENTO</span>
-        <span class="navbar-brand mb-0 h1" style="margin-left: 18px;">USUÁRIO: {{ request.user }}</span>
+        <span class="navbar-brand mb-0 h1" style="margin-left: 18px;">Usuário: {{ request.user }}</span>
+
     </nav>
     <div id="div_container">
         <div id="sidebar">
             <a href="{% url 'index' %}">Listar mensalistas</a>
             <a href="{% url 'cadastrar_mensalista' %}">Cadastrar mensalista</a>
+            <a href="{% url 'usuario' %}">Perfil do usuário</a>
+            <a href="#" style="color: red;">Sair do sistema</a>
         </div>
         <div id="content">
             {% bootstrap_messages %}
