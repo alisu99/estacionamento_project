@@ -64,21 +64,36 @@
         height: 60px;
         padding-bottom: 10px;
     }
+
+    .card {
+        color: black;
+    }
+
+    a:hover {
+        text-decoration: none;
+    }
+
+    .form-control {
+        border-color: black;
+    }
 </style>
 
 
 <body>
     <nav id="nav" class="navbar">
-        <span class="navbar-brand mb-0 h1" style="margin-left: 18px;">UP ESTACIONAMENTO</span>
-        <span class="navbar-brand mb-0 h1" style="margin-left: 18px;">Usuário: {{ request.user }}</span>
+        <strong class="navbar-brand mb-0 h1" style="margin-left: 18px;">UP ESTACIONAMENTO</strong>
+        <a href="{% url 'usuario' %}">
+            <div class="card">
+                <span class="navbar-brand mb-0 h1" style="margin-left: 5px; margin-right: 8px;"><img src="../static/img/user.png" alt="user"
+                        width="25px" height="24" style="margin-right: 8px;">{{ user }}</span>
+            </div>
+        </a>
     </nav>
     <div id="div_container">
         <div id="sidebar">
             <a href="{% url 'index' %}">Listar mensalistas</a>
             <a href="{% url 'cadastrar_mensalista' %}">Cadastrar mensalista</a>
-            <a href="{% url 'usuario' %}">Perfil do usuário</a>
-            <a href="{% url 'logout' %}" style="color: red;"
-                onclick="return confirm('Deseja sair?')">Sair
+            <a href="{% url 'logout' %}" style="color: red;" onclick="return confirm('Deseja sair?')">Sair
                 do sistema</a>
         </div>
         <div id="content">
@@ -89,7 +104,7 @@
             {% endblock %}
         </div>
     </div>
-    
+
     {% bootstrap_javascript jquery='full' %}
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>

@@ -7,6 +7,14 @@ from django.contrib.auth import authenticate
 from django.contrib.auth import login as login_django, logout as logout_django
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse
+import csv
+from django.http import HttpResponse
+from openpyxl import Workbook
+from django.utils.formats import date_format
+import locale
+from openpyxl.styles import Font, Alignment
+
+
 
 
 @login_required(login_url="login/")
@@ -107,3 +115,40 @@ def usuario(request):
 def logout(request):
     logout_django(request)
     return redirect(reverse('login'))
+
+
+@login_required(login_url='login/')
+def to_excel(request):
+    locale.setlocale(locale.LC_NUMERIC, 'pt_BR.UTF-8')
+    # Criar um objeto Workbook do openpyxl
+    workbook = Workbook()
+    sheet = workbook.active
+
+    # Adicionar cabeçalhos
+    sheet.append(['Nome', 'CPF', 'Valor', 'Venc.', 'Início', 'Observações'])
+    for cell in sheet[1]:
+        cell.font = Font(bold=True)  # Tornar o texto em negrito
+        cell.alignment = Alignment(horizontal='center')
+
+
+    # Adicionar dados
+    dados_tabela = Mensalista.objects.all()
+    for linha in dados_tabela:
+        data_formatada = date_format(linha.data_inicial, format='SHORT_DATE_FORMAT')
+        valor_formatado = locale.format('%.2f', linha.valor, grouping=True)
+        sheet.append([linha.nome, linha.cpf, valor_formatado, linha.dia_vencimento, data_formatada, linha.obs])
+
+    # Definir larguras das colunas (ajuste conforme necessário)
+    sheet.column_dimensions['A'].width = 30
+    sheet.column_dimensions['B'].width = 15
+    sheet.column_dimensions['C'].width = 10
+    sheet.column_dimensions['D'].width = 6
+    sheet.column_dimensions['E'].width = 13
+    sheet.column_dimensions['F'].width = 35
+
+    # Criar uma resposta HTTP com o conteúdo do arquivo XLSX
+    response = HttpResponse(content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
+    response['Content-Disposition'] = 'attachment; filename=tabela_estacionamento.xlsx'
+    workbook.save(response)
+
+    return response

@@ -14,5 +14,6 @@ urlpatterns = [
     path('atualizar_mensalista/<int:pk>', views.atualizar_mensalista, name='atualizar_mensalista'),
     path('login/', views.login, name='login'),
     path('usuario/', views.usuario, name='usuario'),
-    path('logout/', views.logout, name='logout')
+    path('logout/', views.logout, name='logout'),
+    path('to_excel', views.to_excel, name='to_excel')
     ]
