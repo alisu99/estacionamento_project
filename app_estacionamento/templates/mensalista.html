@@ -34,6 +34,11 @@
     p {
         margin-bottom: 20px;
     }
+
+    .info {
+        display: flex;
+        gap: 150px;
+    }
 </style>
 <title>{{mensalista.nome|title}}</title>
 <header>
@@ -41,13 +46,20 @@
 </header>
 
 <main>
+    <h5><strong>Nome:</strong> {{mensalista.nome|title}}</h5>
+    <br>
     <div class="info">
         <div>
-            <h5><strong>Nome:</strong> {{mensalista.nome|title}}</h5>
             <p><strong>CPF:</strong> {{mensalista.cpf}}</p>
             <p><strong>Valor:</strong> {{mensalista.valor}}</p>
             <p><strong>Data de Início:</strong> {{mensalista.data_inicial|date:"d/m/Y" }}</p>
             <p><strong>Dia de Vencimento:</strong> {{mensalista.dia_vencimento}}</p>
+            <p><strong>Ativo: </strong>
+            {% if mensalista.situacao == True %}
+                <img src="../static/img/true.png" alt="">
+            {% else %}
+                <img src="../static/img/false.png" alt="">
+            {% endif %}</p>
         </div>
         <div>
             <p><strong>CEP:</strong> {{mensalista.cep}}</p>
@@ -55,10 +67,10 @@
             <p><strong>Bairro:</strong> {{mensalista.bairro|title}}</p>
             <p><strong>Cidade:</strong> {{mensalista.cidade|title}}</p>
             <p><strong>UF:</strong> {{mensalista.uf|upper}}</p>
-            <label for="id_obs"><strong>Observações:</strong></label>
-            <textarea class="form-control" name="obs" id="id_obs" cols="30" rows="5" disabled>{{mensalista.obs|capfirst}}</textarea>
         </div>
     </div>
+    <label for="id_obs"><strong>Observações:</strong></label>
+    <textarea class="form-control" name="obs" id="id_obs" cols="30" rows="5" disabled>{{mensalista.obs|capfirst}}</textarea>
 </main>
 <center>
     <a href="{% url 'excluir' mensalista.id %}" class="btn btn-danger"

@@ -3,5 +3,5 @@ from . models import Mensalista
 
 @admin.register(Mensalista)
 class MensalistasAdmin(admin.ModelAdmin):
-    list_display = ['nome', 'cpf', 'valor', 'dia_vencimento', 'data_inicial']
+    list_display = ['nome', 'cpf', 'valor', 'dia_vencimento', 'data_inicial', 'situacao']
  

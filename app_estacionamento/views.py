@@ -13,7 +13,7 @@ from openpyxl import Workbook
 from django.utils.formats import date_format
 import locale
 from openpyxl.styles import Font, Alignment
-
+from datetime import datetime
 
 
 
@@ -68,14 +68,13 @@ def atualizar_mensalista(request, pk):
         valor = request.POST.get("valor")
         data_inicial = request.POST.get("data_inicial")
         dia_vencimento = request.POST.get("dia_vencimento")
-        cep = request.POST.get(
-            "cep",
-        )
+        cep = request.POST.get("cep")
         endereco = request.POST.get("endereco")
         bairro = request.POST.get("bairro")
         cidade = request.POST.get("cidade")
         uf = request.POST.get("uf")
         obs = request.POST.get("obs")
+        situacao = request.POST.get("situacao")
 
         Mensalista.objects.filter(pk=pk).update(
             valor=valor,
@@ -87,12 +86,12 @@ def atualizar_mensalista(request, pk):
             cidade=cidade,
             uf=uf,
             obs=obs,
+            situacao=situacao,
         )
     return redirect("index")
 
 
 def login(request):
-    print(request.user)
     if request.method == "GET":
         return render(request, "login/login.html")
     else:
@@ -146,9 +145,11 @@ def to_excel(request):
     sheet.column_dimensions['E'].width = 13
     sheet.column_dimensions['F'].width = 35
 
+    #adicionando a data de download no nome da tabela
+    data = datetime.now
     # Criar uma resposta HTTP com o conteúdo do arquivo XLSX
     response = HttpResponse(content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
-    response['Content-Disposition'] = 'attachment; filename=tabela_estacionamento.xlsx'
+    response['Content-Disposition'] = f'attachment; filename=tabela_estacionamento - {data}.xlsx'
     workbook.save(response)
 
     return response

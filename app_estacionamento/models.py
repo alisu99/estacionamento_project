@@ -2,6 +2,7 @@ from django.db import models
 
 class Mensalista(models.Model):
     id = models.AutoField(primary_key=True)
+    situacao = models.BooleanField('Ativo', default=True)
     nome = models.CharField('Nome *', max_length=50)
     cpf = models.CharField('CPF *', max_length=14)
     valor = models.DecimalField('Valor *', max_digits=8, decimal_places=2)

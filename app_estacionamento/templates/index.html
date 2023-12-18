@@ -62,18 +62,32 @@
                 <th scope="col">Valor</th>
                 <th scope="col"><a href="{% url 'order_by_vencimento' %}" style="color: white;">Dia de Vencimento</a></th>
                 <th scope="col">Data de Início</th>
+                <th scope="col">Ativo</th>
             </tr>
         </thead>
         <tbody>
             {% for mensalista in mensalistas %}
-            <tr>
-                <td>{{ mensalista.id }}</td>
-                <td><a href="{% url 'mensalista' mensalista.id %}" style="color: black;"><strong>{{ mensalista.nome|title }}</strong></a></td>
-                <td>{{ mensalista.cpf }}</td>
-                <td>{{ mensalista.valor }}</td>
-                <td>{{ mensalista.dia_vencimento }}</td>
-                <td>{{ mensalista.data_inicial|date:"d/m/Y" }}</td>
-            </tr>
+            {% if mensalista.situacao == True %}
+                <tr>
+                    <td>{{ mensalista.id }}</td>
+                    <td><a href="{% url 'mensalista' mensalista.id %}" style="color: black;"><strong>{{ mensalista.nome|title }}</strong></a></td>
+                    <td>{{ mensalista.cpf }}</td>
+                    <td>{{ mensalista.valor }}</td>
+                    <td>{{ mensalista.dia_vencimento }}</td>
+                    <td>{{ mensalista.data_inicial|date:"d/m/Y" }}</td>
+                    <td><img src="../static/img/true.png" alt=""></td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td style="color: rgba(255, 0, 0, 0.57); background-color: #ff00002c;">{{ mensalista.id }}</td>
+                    <td style="background-color: #ff00002c;" ><a href="{% url 'mensalista' mensalista.id %}" style="color: rgba(255, 0, 0, 0.57);"><strong>{{ mensalista.nome|title }}</strong></a></td>
+                    <td style="color: rgba(255, 0, 0, 0.57); background-color: #ff00002c;"> {{ mensalista.cpf }}</td>
+                    <td style="color: rgb(255, 0, 0); background-color: #ff00002c;">{{ mensalista.valor }}</td>
+                    <td style="color: rgba(255, 0, 0, 0.57); background-color: #ff00002c;">{{ mensalista.dia_vencimento }}</td>
+                    <td style="color: rgba(255, 0, 0, 0.57); background-color: #ff00002c;">{{ mensalista.data_inicial|date:"d/m/Y" }}</td>
+                    <td style=" background-color: #ff00002c;"><img src="../static/img/false.png" alt=""></td>
+                </tr>
+            {% endif %}
             {% endfor %}
         </tbody>
     </table>

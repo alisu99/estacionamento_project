@@ -97,7 +97,8 @@
         <div class="col-md-3">
             <div class="form-group">
                 <label for="id_data_inicial">Data de início *</label>
-                <input class="form-control" type="date" name="data_inicial" id="id_data_inicial" required>
+                <input class="form-control" type="date" name="data_inicial" id="id_data_inicial" 
+                value="{{ mensalista.data_inicial|date:'Y-m-d' }}"  max="{% now 'Y-m-d' %}" required>
             </div>
         </div>
 
@@ -144,6 +145,15 @@
                 <label for="id_cep">CEP (opcional)</label>
                 <input class="form-control" type="text" name="cep" id="id_cep" maxlength="8" style="width: 100px;"
                     value="{{ mensalista.cep }}">
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="form-group">
+                <label for="id_situacao">Ativo</label>
+                <select class="form-control" id="id_situacao" name="situacao">
+                    <option value="True">Sim</option>
+                    <option value="False">Não</option>
+                </select>
             </div>
         </div>
     </div>
