@@ -128,3 +128,6 @@ EMAIL_PORT = 587
 EMAIL_USER_TSL = True
 EMAIL_HOST_PASSWORD = 'sua-senha'
 """
+
+CSRF_COOKIE_SECURE = True  # Certifique-se de que esta configuração está correta para o seu ambiente
+CSRF_COOKIE_HTTPONLY = True
