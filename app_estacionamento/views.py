@@ -38,11 +38,10 @@ def cadastrar_mensalista(request):
         form = MensalistaModelForm(request.POST)
         if form.is_valid():
             form.save()
-            messages.success(request, "Mensalista adicionado com sucesso!")
             form = MensalistaModelForm()
         else:
             messages.error(request, "Não foi possível completar!")
-        return redirect("cadastrar_mensalista")
+        return redirect("index")
 
 
 @login_required(login_url="login/")
