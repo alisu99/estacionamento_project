@@ -13,7 +13,6 @@ from openpyxl import Workbook
 from django.utils.formats import date_format
 import locale
 from openpyxl.styles import Font, Alignment
-from datetime import datetime
 
 
 
@@ -124,7 +123,7 @@ def to_excel(request):
     sheet = workbook.active
 
     # Adicionar cabeçalhos
-    sheet.append(['Nome', 'CPF', 'Valor', 'Venc.', 'Início', 'Observações'])
+    sheet.append(['Nome', 'CPF', 'Valor', 'Venc.', 'Início', 'Ativo', 'Observações'])
     for cell in sheet[1]:
         cell.font = Font(bold=True)  # Tornar o texto em negrito
         cell.alignment = Alignment(horizontal='center')
@@ -135,7 +134,7 @@ def to_excel(request):
     for linha in dados_tabela:
         data_formatada = date_format(linha.data_inicial, format='SHORT_DATE_FORMAT')
         valor_formatado = locale.format('%.2f', linha.valor, grouping=True)
-        sheet.append([linha.nome, linha.cpf, valor_formatado, linha.dia_vencimento, data_formatada, linha.obs])
+        sheet.append([linha.nome, linha.cpf, valor_formatado, linha.dia_vencimento, data_formatada, linha.situacao, linha.obs])
 
     # Definir larguras das colunas (ajuste conforme necessário)
     sheet.column_dimensions['A'].width = 30
@@ -143,13 +142,12 @@ def to_excel(request):
     sheet.column_dimensions['C'].width = 10
     sheet.column_dimensions['D'].width = 6
     sheet.column_dimensions['E'].width = 13
-    sheet.column_dimensions['F'].width = 35
+    sheet.column_dimensions['F'].width = 12
+    sheet.column_dimensions['G'].width = 35
 
-    #adicionando a data de download no nome da tabela
-    data = datetime.now
     # Criar uma resposta HTTP com o conteúdo do arquivo XLSX
     response = HttpResponse(content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
-    response['Content-Disposition'] = f'attachment; filename=tabela_estacionamento - {data}.xlsx'
+    response['Content-Disposition'] = 'attachment; filename=tabela_estacionamento.xlsx'
     workbook.save(response)
 
     return response
