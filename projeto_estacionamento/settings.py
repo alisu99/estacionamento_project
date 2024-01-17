@@ -67,12 +67,12 @@ WSGI_APPLICATION = 'projeto_estacionamento.wsgi.application'
 
 DATABASES = {
     'default': {
-        "ENGINE": "django.db.backends.mysql",
+        "ENGINE": "django.db.backends.postgresql",
         "NAME": "estacionamento_schema",
         "USER": "root",
-        "PASSWORD": "132,mysql",
+        "PASSWORD": "132,postgresql",
         "HOST": "localhost",
-        "PORT": "3306",
+        "PORT": "5432",
     }
 }
 
