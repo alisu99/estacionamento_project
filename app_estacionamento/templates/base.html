@@ -1,5 +1,4 @@
 {% load bootstrap4 %}
-{% load static %}
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -84,8 +83,7 @@
         <strong class="navbar-brand mb-0 h1" style="margin-left: 18px;">UP ESTACIONAMENTO</strong>
         <a href="{% url 'usuario' %}">
             <div class="card">
-                <span class="navbar-brand mb-0 h1" style="margin-left: 5px; margin-right: 8px;"><img src="{% static 'img/user.png' %}" alt="user"
-                        width="25px" height="24" style="margin-right: 8px;">{{ user }}</span>
+                <span class="navbar-brand mb-0 h1" style="margin-left: 5px; margin-right: 8px;">{{ user }}</span>
             </div>
         </a>
     </nav>
