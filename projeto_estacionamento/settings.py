@@ -12,9 +12,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-hm4g9v796h_k5a4gt9)7&y(2y40#$ya3r+omud^7e0&oeay)9c'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ["estacionamento-j0ia.onrender.com"]
+ALLOWED_HOSTS = ["*"]
 CSRF_TRUSTED_ORIGINS = ['https://estacionamento-j0ia.onrender.com']
 
 
